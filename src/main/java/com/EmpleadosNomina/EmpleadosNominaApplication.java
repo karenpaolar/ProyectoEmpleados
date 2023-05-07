@@ -22,12 +22,13 @@ public class EmpleadosNominaApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+		/*
 		ENEntidad empleado1 = new ENEntidad("Karen Romero", "Auxiliar");
 		repositorio.save(empleado1);
 		
 		ENEntidad empleado2 = new ENEntidad("Juan Lopez", "Chofer");
 		repositorio.save(empleado2);
-				
+				*/
 		
 	}
 
