@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<title>Listado de Empleados</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+		crossorigin="anonymous"></script>
+</head>
+
+<body>
+	
+		<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+			<a class="navbar-brand" href="#">Control de Empleados</a>
+			<!-- Navbar links -->
+			<div class="collapse navbar-collapse" id="collapsibleNavbar">
+				<ul class="navbar-nav">
+					<li class="nav-item"><a class="nav-link"
+					th:href="@{/empleados}">Control de empleados </a></li>
+					
+				</ul>
+			</div>
+			
+		</nav>
+	
+	
+	<div class="container">
+		<div class="row">
+			<h1> Lista de empleados</h1>
+		</div>
+		<table class="table table-striped table-bordered">
+			<thead class="table-light">
+				</tr>
+				<th>Numero</th>
+				<th>Nombre</th>
+				<th>Roll</th>
+				
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="empleado : ${empleados}">
+					<td th:text="${empleado.id}">Numero</td>
+					<td th:text="${empleado.nombre}">Nombre</td>
+					<td th:text="${empleado.roll}">Roll</td>
+				
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+</body>
+
+</html>

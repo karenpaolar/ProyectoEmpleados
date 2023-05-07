@@ -28,7 +28,8 @@ public class EmpleadosNominaApplication implements CommandLineRunner {
 		
 		ENEntidad empleado2 = new ENEntidad("Juan Lopez", "Chofer");
 		repositorio.save(empleado2);
-				*/
+		*/
+				
 		
 	}
 
