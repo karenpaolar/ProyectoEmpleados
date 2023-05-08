@@ -10,23 +10,59 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "Empleados")
 public class ENEntidad {
-
-	
-
-
 	
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+
 	@Column(name = "nombre", nullable = false, length = 50)
 	private String nombre;
 	
 	@Column(name = "roll", nullable = false, length = 50)
 	private String roll;
 	
+	@Column(name = "sueldoBase")
+	private Float sueldoBase;
 	
+	@Column(name = "entrega")
+	private Long entrega;
+	
+	@Column(name = "bonoPuesto")
+	private Float bonoPuesto;
+	
+	@Column(name = "impuesto")
+	private Float impuesto;
+	
+	@Column(name = "impuestoExtra")
+	private Float impuestoExtra;
+	
+	@Column(name = "sueldoTotal")
+	private Float sueldoTotal;
+	
+	
+	
+	
+	
+
+
+	public ENEntidad(Long id, String nombre, String roll, Float sueldoBase, Long entrega, Float bonoPuesto,
+			Float impuesto, Float impuestoExtra, Float sueldoTotal) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.roll = roll;
+		this.sueldoBase = sueldoBase;
+		this.entrega = entrega;
+		this.bonoPuesto = bonoPuesto;
+		this.impuesto = impuesto;
+		this.impuestoExtra = impuestoExtra;
+		this.sueldoTotal = sueldoTotal;
+		
+		
+	}
+
 	public ENEntidad() {
 	
 	}
@@ -43,6 +79,7 @@ public class ENEntidad {
 		this.nombre = nombre;
 		this.roll = roll;
 	}
+	
 	
 	/**
 	 * @return the id
@@ -85,14 +122,99 @@ public class ENEntidad {
 	public void setRoll(String roll) {
 		this.roll = roll;
 	}
+
+	/**
+	 * @return the sueldoBase
+	 */
+	public Float getSueldoBase() {
+		return sueldoBase;
+	}
+
+	/**
+	 * @param sueldoBase the sueldoBase to set
+	 */
+	public void setSueldoBase(Float sueldoBase) {
+		this.sueldoBase = sueldoBase;
+	}
+
+	/**
+	 * @return the entrega
+	 */
+	public Long getEntrega() {
+		return entrega;
+	}
+
+	/**
+	 * @param entrega the entrega to set
+	 */
+	public void setEntrega(Long entrega) {
+		this.entrega = entrega;
+	}
+
+	/**
+	 * @return the bonoPuesto
+	 */
+	public Float getBonoPuesto() {
+		return bonoPuesto;
+	}
+
+	/**
+	 * @param bonoPuesto the bonoPuesto to set
+	 */
+	public void setBonoPuesto(Float bonoPuesto) {
+		this.bonoPuesto = bonoPuesto;
+	}
+
+	/**
+	 * @return the impuesto
+	 */
+	public Float getImpuesto() {
+		return impuesto;
+	}
+
+	/**
+	 * @param impuesto the impuesto to set
+	 */
+	public void setImpuesto(Float impuesto) {
+		this.impuesto = impuesto;
+	}
+
+	/**
+	 * @return the impuestoExtra
+	 */
+	public Float getImpuestoExtra() {
+		return impuestoExtra;
+	}
+
+	/**
+	 * @param impuestoExtra the impuestoExtra to set
+	 */
+	public void setImpuestoExtra(Float impuestoExtra) {
+		this.impuestoExtra = impuestoExtra;
+	}
+
+	/**
+	 * @return the sueldoTotal
+	 */
+	public Float getSueldoTotal() {
+		return sueldoTotal;
+	}
+
+	/**
+	 * @param sueldoTotal the sueldoTotal to set
+	 */
+	public void setSueldoTotal(Float sueldoTotal) {
+		this.sueldoTotal = sueldoTotal;
+	}
 	
 	
 	@Override
 	public String toString() {
-		return "ENEntidad [id=" + id + ", nombre=" + nombre + ", roll=" + roll + "]";
+		return "ENEntidad [id=" + id + ", nombre=" + nombre + ", roll=" + roll + ", sueldoBase=" + sueldoBase
+				+ ", entrega=" + entrega + ", bonoPuesto=" + bonoPuesto + ", impuesto=" + impuesto + ", impuestoExtra="
+				+ impuestoExtra + ", sueldoTotal=" + sueldoTotal + "]";
 	}
-	
-	
+
 	
 	
 }

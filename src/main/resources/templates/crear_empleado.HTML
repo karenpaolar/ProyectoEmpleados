@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<title>Registro de Empleados</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+		crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+		<a class="navbar-brand" href="#">Control de Empleados</a>
+		<!-- Navbar links -->
+		<div class="collapse navbar-collapse" id="collapsibleNavbar">
+			<ul class="navbar-nav">
+				<li class="nav-item"><a class="nav-link" th:href="@{/empleados}">Control de empleados </a></li>
+
+			</ul>
+		</div>
+
+	</nav>
+
+	<br>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+				<h1 class="text-center">Registro de empleado</h1>
+				<div class="card-body">
+					<form th:action="@{/empleados}" th:object="${empleado}" method="POST">
+						<div class="form-group">
+							<label>Número de empleado:</label>
+							<input type="text" name="id" th:field="*{id}" class="form-control" placeholder="Mostrar Numero">
+						</div>
+						<div class="form-group">
+							<label>Nombre :</label>
+							<input type="text" name="nombre" th:field="*{nombre}" class="form-control"
+								placeholder="Digite su nombre" required>
+						</div>
+						<br>
+						
+
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="exampleRadios" th:field="*{roll}" id="exampleRadios1"
+								value="Chofer" checked>
+							<label class="form-check-label" for="exampleRadios1">
+								Chofer
+							</label>
+						</div>
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="exampleRadios" th:field="*{roll}" id="exampleRadios2"
+								value="Cargador">
+							<label class="form-check-label" for="exampleRadios2">
+								Cargador
+							</label>
+						</div>
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="exampleRadios" th:field="*{roll}" id="exampleRadios3"
+								value="Auxiliar">
+							<label class="form-check-label" for="exampleRadios3">
+								Auxiliar
+							</label>
+						</div>
+
+						<br>
+						<div class="box-footer">
+							<button class="btn btn-success"> Guardar</button>
+
+						</div>
+
+					</form>
+
+				</div>
+			</div>
+
+
+		</div>
+
+	</div>
+
+
+
+
+</body>
+
+</html>

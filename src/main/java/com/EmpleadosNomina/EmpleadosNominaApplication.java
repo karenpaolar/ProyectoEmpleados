@@ -8,16 +8,23 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.EmpleadosNomina.Entidad.ENEntidad;
 import com.EmpleadosNomina.Repositorio.ENRepositorio;
 
+
 @SpringBootApplication
 public class EmpleadosNominaApplication implements CommandLineRunner {
 
 	public static void main(String[] args) {
+		
+	    
 		SpringApplication.run(EmpleadosNominaApplication.class, args);
+		
+		
 	}
 	
 	
 	@Autowired
 	private ENRepositorio repositorio;
+	
+
 	
 
 	@Override
