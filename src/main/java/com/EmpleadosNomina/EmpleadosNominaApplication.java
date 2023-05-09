@@ -13,6 +13,7 @@ import com.EmpleadosNomina.Repositorio.ENRepositorio;
 public class EmpleadosNominaApplication implements CommandLineRunner {
 
 	public static void main(String[] args) {
+
 		
 	    
 		SpringApplication.run(EmpleadosNominaApplication.class, args);

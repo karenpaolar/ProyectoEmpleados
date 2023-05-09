@@ -43,9 +43,10 @@
 				</tr>
 				<th>Numero</th>
 				<th>Nombre</th>
-				<th>Roll</th>
+				<th>Rol</th>
 				<th>SueldoBase</th>
 				<th>Entrega</th>
+				<th>EntregaSaldo</th>
 				<th>BonoPuesto</th>
 				<th>Impuesto</th>
 				<th>ImpuestoExtra</th>
@@ -58,9 +59,10 @@
 				<tr th:each="empleado : ${empleados}">
 					<td th:text="${empleado.id}">Numero</td>
 					<td th:text="${empleado.nombre}">Nombre</td>
-					<td th:text="${empleado.roll}">Roll</td>
+					<td th:text="${empleado.rol}">Rol</td>
 					<td th:text="${empleado.sueldoBase}">SueldoBase</td>
 					<td th:text="${empleado.entrega}">Entrega</td>
+					<td th:text="${empleado.entregaSaldo}">EntregaSaldo</td>
 					<td th:text="${empleado.bonoPuesto}">BonoPuesto</td>
 					<td th:text="${empleado.impuesto}">Impuesto</td>
 					<td th:text="${empleado.impuestoExtra}">ImpuestoExtra</td>

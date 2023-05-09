@@ -1,5 +1,7 @@
 package com.EmpleadosNomina.Controlador;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +29,7 @@ public class ENControlador {
 	@GetMapping("/empleados/nuevo")
 	public String crearEmpleadoFormulario(Model modelo) {
 		ENEntidad empleado = new ENEntidad();
+		
 		modelo.addAttribute("empleado", empleado);
 		return "crear_empleado";
 
@@ -40,6 +43,7 @@ public class ENControlador {
 		return "redirect:/empleados";
 
 	}
+
 	
 
 	@GetMapping("/empleados/movimientos/{id}")
@@ -55,9 +59,13 @@ public class ENControlador {
 		ENEntidad empleadoExistente = servicio.obtenerEmpleadoPorId(id);
 		empleadoExistente.setId(id);
 		empleadoExistente.setNombre(empleado.getNombre());
-		empleadoExistente.setRoll(empleado.getRoll());
+		empleadoExistente.setSueldoBase(empleado.getSueldoBase());
+		empleadoExistente.setRol(empleado.getRol());
 		empleadoExistente.setEntrega(empleado.getEntrega());
-		
+		empleadoExistente.setEntregaSaldo(empleado.getEntregaSaldo());
+		empleadoExistente.setBonoPuesto(empleado.getBonoPuesto());
+		empleadoExistente.setImpuesto(empleado.getImpuesto());
+		empleadoExistente.setSueldoTotal(empleado.getSueldoTotal());
 
 		servicio.actualizarEmpleado(empleadoExistente);
 		return "redirect:/empleados";

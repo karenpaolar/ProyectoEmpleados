@@ -10,91 +10,63 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "Empleados")
 public class ENEntidad {
-	
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
 
 	@Column(name = "nombre", nullable = false, length = 50)
 	private String nombre;
-	
-	@Column(name = "roll", nullable = false, length = 50)
-	private String roll;
-	
+
+	@Column(name = "rol", nullable = false, length = 50)
+	private String rol;
+
 	@Column(name = "sueldoBase")
 	private double sueldoBase;
-	
+
 	@Column(name = "entrega")
 	private Long entrega;
-	
+
+	@Column(name = "entregaSaldo")
+	private double entregaSaldo;
+
 	@Column(name = "bonoPuesto")
 	private double bonoPuesto;
-	
+
 	@Column(name = "impuesto")
 	private double impuesto;
-	
+
 	@Column(name = "impuestoExtra")
 	private double impuestoExtra;
-	
+
 	@Column(name = "sueldoTotal")
 	private double sueldoTotal;
-	
-	
-	
-	
-	
 
-
-	public ENEntidad(Long id, String nombre, String roll, double sueldoBase, Long entrega, double bonoPuesto,
-			double impuesto, double impuestoExtra, double sueldoTotal) {
+	public ENEntidad(Long id, String nombre, String rol, double sueldoBase, Long entrega, double entregaSaldo,
+			double bonoPuesto, double impuesto, double impuestoExtra, double sueldoTotal) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
-		this.roll = roll;
+		this.rol = rol;
 		this.sueldoBase = sueldoBase;
 		this.entrega = entrega;
+		this.entregaSaldo = entregaSaldo;
 		this.bonoPuesto = bonoPuesto;
 		this.impuesto = impuesto;
 		this.impuestoExtra = impuestoExtra;
 		this.sueldoTotal = sueldoTotal;
-	}
-
-	public ENEntidad(Long id, String nombre, String roll, Float sueldoBase, Long entrega, Float bonoPuesto,
-			Float impuesto, Float impuestoExtra, Float sueldoTotal) {
-		super();
-		this.id = id;
-		this.nombre = nombre;
-		this.roll = roll;
-		this.sueldoBase = sueldoBase;
-		this.entrega = entrega;
-		this.bonoPuesto = bonoPuesto;
-		this.impuesto = impuesto;
-		this.impuestoExtra = impuestoExtra;
-		this.sueldoTotal = sueldoTotal;
-		
-		
 	}
 
 	public ENEntidad() {
-	
+
 	}
 
-	public ENEntidad(Long id, String nombre, String roll) {
-		super();
-		this.id = id;
-		this.nombre = nombre;
-		this.roll = roll;
-	}
-	
-	public ENEntidad(String nombre, String roll) {
+	public ENEntidad(String nombre, String rol) {
 		super();
 		this.nombre = nombre;
-		this.roll = roll;
+		this.rol = rol;
 	}
-	
-	
+
 	/**
 	 * @return the id
 	 */
@@ -126,21 +98,22 @@ public class ENEntidad {
 	/**
 	 * @return the roll
 	 */
-	public String getRoll() {
-		return roll;
+	public String getRol() {
+		return rol;
 	}
 
 	/**
 	 * @param roll the roll to set
 	 */
-	public void setRoll(String roll) {
-		this.roll = roll;
+	public void setRol(String roll) {
+		this.rol = roll;
 	}
 
 	/**
 	 * @return the sueldoBase
 	 */
-	public Double getSueldoBase() {
+	public double getSueldoBase() {
+		sueldoBase = 1440 * 4;
 		return sueldoBase;
 	}
 
@@ -168,7 +141,17 @@ public class ENEntidad {
 	/**
 	 * @return the bonoPuesto
 	 */
-	public Double getBonoPuesto() {
+	public double getBonoPuesto() {
+		if (rol.equals("Chofer")) {
+			bonoPuesto = 10 * 8 * 6 * 4;
+
+		} else if (rol.equals("Cargador")) {
+			bonoPuesto = 5 * 8 * 6 * 4;
+
+		} else {
+			bonoPuesto = 0;
+		}
+
 		return bonoPuesto;
 	}
 
@@ -182,7 +165,8 @@ public class ENEntidad {
 	/**
 	 * @return the impuesto
 	 */
-	public Double getImpuesto() {
+	public double getImpuesto() {
+		impuesto = (sueldoBase * 9) / 100;
 		return impuesto;
 	}
 
@@ -196,7 +180,7 @@ public class ENEntidad {
 	/**
 	 * @return the impuestoExtra
 	 */
-	public Double getImpuestoExtra() {
+	public double getImpuestoExtra() {
 		return impuestoExtra;
 	}
 
@@ -210,7 +194,8 @@ public class ENEntidad {
 	/**
 	 * @return the sueldoTotal
 	 */
-	public Double getSueldoTotal() {
+	public double getSueldoTotal() {
+
 		return sueldoTotal;
 	}
 
@@ -218,17 +203,30 @@ public class ENEntidad {
 	 * @param sueldoTotal the sueldoTotal to set
 	 */
 	public void setSueldoTotal(double sueldoTotal) {
+		sueldoTotal = sueldoBase + bonoPuesto + entregaSaldo - impuesto;
 		this.sueldoTotal = sueldoTotal;
 	}
-	
-	
+
+	/**
+	 * @return the entregaSaldo
+	 */
+	public double getEntregaSaldo() {
+		entregaSaldo = entrega * 5;
+		return entregaSaldo;
+	}
+
+	/**
+	 * @param entregaSaldo the entregaSaldo to set
+	 */
+	public void setEntregaSaldo(double entregaSaldo) {
+		this.entregaSaldo = entregaSaldo;
+	}
+
 	@Override
 	public String toString() {
-		return "ENEntidad [id=" + id + ", nombre=" + nombre + ", roll=" + roll + ", sueldoBase=" + sueldoBase
+		return "ENEntidad [id=" + id + ", nombre=" + nombre + ", rol=" + rol + ", sueldoBase=" + sueldoBase
 				+ ", entrega=" + entrega + ", bonoPuesto=" + bonoPuesto + ", impuesto=" + impuesto + ", impuestoExtra="
 				+ impuestoExtra + ", sueldoTotal=" + sueldoTotal + "]";
 	}
 
-	
-	
 }
