@@ -65,6 +65,7 @@ public class ENControlador {
 		empleadoExistente.setBonoPuesto(empleado.getBonoPuesto());
 		empleadoExistente.setImpuesto(empleado.getImpuesto());
 		empleadoExistente.setSueldoTotal(empleado.getSueldoTotal());
+		empleadoExistente.setValesDespensa(empleado.getValesDespensa());
 
 		servicio.actualizarEmpleado(empleadoExistente);
 		return "redirect:/empleados";

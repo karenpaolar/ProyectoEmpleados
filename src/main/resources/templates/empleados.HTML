@@ -51,6 +51,7 @@
 				<th>Impuesto</th>
 				<th>ImpuestoExtra</th>
 				<th>Sueldo Neto</th>
+				<th>Vales de despensa</th>
 				<th>Acciones</th>
 				
 				</tr>
@@ -67,6 +68,7 @@
 					<td th:text="${empleado.impuesto}">Impuesto</td>
 					<td th:text="${empleado.impuestoExtra}">ImpuestoExtra</td>
 					<td th:text="${empleado.sueldoTotal}">Sueldo Neto</td>
+					<td th:text="${empleado.valesDespensa}">Vales de despensa</td>
 					<td>
 						<a th:href="@{/empleados/movimientos/{id}(id=${empleado.id})}" class="btn btn-info">Movimientos</a>
 						<a th:href="@{/empleados/{id}(id=${empleado.id})}" class="btn btn-danger">Eliminar</a>

@@ -11,11 +11,14 @@ import jakarta.persistence.Table;
 @Table(name = "Empleados")
 public class ENEntidad {
 
+
+
 	@Override
 	public String toString() {
 		return "ENEntidad [id=" + id + ", nombre=" + nombre + ", rol=" + rol + ", sueldoBase=" + sueldoBase
 				+ ", entrega=" + entrega + ", entregaSaldo=" + entregaSaldo + ", bonoPuesto=" + bonoPuesto
-				+ ", impuesto=" + impuesto + ", impuestoExtra=" + impuestoExtra + ", sueldoTotal=" + sueldoTotal + "]";
+				+ ", impuesto=" + impuesto + ", impuestoExtra=" + impuestoExtra + ", sueldoTotal=" + sueldoTotal
+				+ ", valesDespensa=" + valesDespensa + "]";
 	}
 
 	/**
@@ -177,6 +180,21 @@ public class ENEntidad {
 	public void setSueldoTotal(double sueldoTotal) {
 		this.sueldoTotal = sueldoTotal;
 	}
+	
+	/**
+	 * @return the valesDespensa
+	 */
+	public double getValesDespensa() {
+		valesDespensa = ((sueldoBase + bonoPuesto) * 4)/100;
+		return valesDespensa;
+	}
+
+	/**
+	 * @param valesDespensa the valesDespensa to set
+	 */
+	public void setValesDespensa(double valesDespensa) {
+		this.valesDespensa = valesDespensa;
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -208,9 +226,14 @@ public class ENEntidad {
 
 	@Column(name = "sueldoTotal")
 	private double sueldoTotal;
+	
+	@Column(name = "valesDespensa")
+	private double valesDespensa;
+
+
 
 	public ENEntidad(Long id, String nombre, String rol, double sueldoBase, Long entrega, double entregaSaldo,
-			double bonoPuesto, double impuesto, double impuestoExtra, double sueldoTotal) {
+			double bonoPuesto, double impuesto, double impuestoExtra, double sueldoTotal, double valesDespensa) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -222,6 +245,7 @@ public class ENEntidad {
 		this.impuesto = impuesto;
 		this.impuestoExtra = impuestoExtra;
 		this.sueldoTotal = sueldoTotal;
+		this.valesDespensa = valesDespensa;
 	}
 
 	public ENEntidad() {
