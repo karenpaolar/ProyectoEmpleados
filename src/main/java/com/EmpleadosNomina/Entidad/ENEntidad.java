@@ -11,6 +11,173 @@ import jakarta.persistence.Table;
 @Table(name = "Empleados")
 public class ENEntidad {
 
+	@Override
+	public String toString() {
+		return "ENEntidad [id=" + id + ", nombre=" + nombre + ", rol=" + rol + ", sueldoBase=" + sueldoBase
+				+ ", entrega=" + entrega + ", entregaSaldo=" + entregaSaldo + ", bonoPuesto=" + bonoPuesto
+				+ ", impuesto=" + impuesto + ", impuestoExtra=" + impuestoExtra + ", sueldoTotal=" + sueldoTotal + "]";
+	}
+
+	/**
+	 * @return the id
+	 */
+	public Long getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	/**
+	 * @return the nombre
+	 */
+	public String getNombre() {
+		return nombre;
+	}
+
+	/**
+	 * @param nombre the nombre to set
+	 */
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	/**
+	 * @return the rol
+	 */
+	public String getRol() {
+		return rol;
+	}
+
+	/**
+	 * @param rol the rol to set
+	 */
+	public void setRol(String rol) {
+		this.rol = rol;
+	}
+
+	/**
+	 * @return the sueldoBase
+	 */
+	public double getSueldoBase() {
+		return sueldoBase;
+	}
+
+	/**
+	 * @param sueldoBase the sueldoBase to set
+	 */
+	public void setSueldoBase(double sueldoBase) {
+		sueldoBase = 1440 * 4;
+		this.sueldoBase = sueldoBase;
+	}
+
+	/**
+	 * @return the entrega
+	 */
+	public Long getEntrega() {
+		return entrega;
+	}
+
+	/**
+	 * @param entrega the entrega to set
+	 */
+	public void setEntrega(Long entrega) {
+		this.entrega = entrega;
+	}
+
+	/**
+	 * @return the entregaSaldo
+	 */
+	public double getEntregaSaldo() {
+		return entregaSaldo;
+	}
+
+	/**
+	 * @param entregaSaldo the entregaSaldo to set
+	 */
+	public void setEntregaSaldo(double entregaSaldo) {
+		entregaSaldo = entrega * 5;
+		this.entregaSaldo = entregaSaldo;
+	}
+
+	/**
+	 * @return the bonoPuesto
+	 */
+	public double getBonoPuesto() {
+		if (rol.equals("Chofer")) {
+			bonoPuesto = 10 * 8 * 6 * 4;
+
+		} else if (rol.equals("Cargador")) {
+			bonoPuesto = 5 * 8 * 6 * 4;
+
+		} else {
+			bonoPuesto = 0;
+		}
+		return bonoPuesto;
+	}
+
+	/**
+	 * @param bonoPuesto the bonoPuesto to set
+	 */
+	public void setBonoPuesto(double bonoPuesto) {
+		this.bonoPuesto = bonoPuesto;
+	}
+
+	/**
+	 * @return the impuesto
+	 */
+	public double getImpuesto() {
+		impuesto = ((sueldoBase + entregaSaldo + bonoPuesto) * 9) / 100;
+		return impuesto;
+	}
+
+	/**
+	 * @param impuesto the impuesto to set
+	 */
+	public void setImpuesto(double impuesto) {
+		this.impuesto = impuesto;
+	}
+
+	/**
+	 * @return the impuestoExtra
+	 */
+	public double getImpuestoExtra() {
+		if((sueldoBase + entregaSaldo + bonoPuesto) >= 10000){
+			impuestoExtra = ((sueldoBase + entregaSaldo + bonoPuesto) * 3) / 100;
+			
+		}else {
+			impuestoExtra = 0;
+		}
+		
+		return impuestoExtra;
+	}
+
+	/**
+	 * @param impuestoExtra the impuestoExtra to set
+	 */
+	public void setImpuestoExtra(double impuestoExtra) {
+		this.impuestoExtra = impuestoExtra;
+	}
+
+	/**
+	 * @return the sueldoTotal
+	 */
+	public double getSueldoTotal() {
+		sueldoTotal = sueldoBase + bonoPuesto + entregaSaldo - impuesto;
+		return sueldoTotal;
+	}
+
+	/**
+	 * @param sueldoTotal the sueldoTotal to set
+	 */
+	public void setSueldoTotal(double sueldoTotal) {
+		this.sueldoTotal = sueldoTotal;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -58,175 +225,11 @@ public class ENEntidad {
 	}
 
 	public ENEntidad() {
-
-	}
-
-	public ENEntidad(String nombre, String rol) {
 		super();
-		this.nombre = nombre;
-		this.rol = rol;
 	}
 
-	/**
-	 * @return the id
-	 */
-	public Long getId() {
-		return id;
-	}
+	
 
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(Long id) {
-		this.id = id;
-	}
 
-	/**
-	 * @return the nombre
-	 */
-	public String getNombre() {
-		return nombre;
-	}
-
-	/**
-	 * @param nombre the nombre to set
-	 */
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	/**
-	 * @return the roll
-	 */
-	public String getRol() {
-		return rol;
-	}
-
-	/**
-	 * @param roll the roll to set
-	 */
-	public void setRol(String roll) {
-		this.rol = roll;
-	}
-
-	/**
-	 * @return the sueldoBase
-	 */
-	public double getSueldoBase() {
-		sueldoBase = 1440 * 4;
-		return sueldoBase;
-	}
-
-	/**
-	 * @param sueldoBase the sueldoBase to set
-	 */
-	public void setSueldoBase(double sueldoBase) {
-		this.sueldoBase = sueldoBase;
-	}
-
-	/**
-	 * @return the entrega
-	 */
-	public Long getEntrega() {
-		return entrega;
-	}
-
-	/**
-	 * @param entrega the entrega to set
-	 */
-	public void setEntrega(Long entrega) {
-		this.entrega = entrega;
-	}
-
-	/**
-	 * @return the bonoPuesto
-	 */
-	public double getBonoPuesto() {
-		if (rol.equals("Chofer")) {
-			bonoPuesto = 10 * 8 * 6 * 4;
-
-		} else if (rol.equals("Cargador")) {
-			bonoPuesto = 5 * 8 * 6 * 4;
-
-		} else {
-			bonoPuesto = 0;
-		}
-
-		return bonoPuesto;
-	}
-
-	/**
-	 * @param bonoPuesto the bonoPuesto to set
-	 */
-	public void setBonoPuesto(double bonoPuesto) {
-		this.bonoPuesto = bonoPuesto;
-	}
-
-	/**
-	 * @return the impuesto
-	 */
-	public double getImpuesto() {
-		impuesto = (sueldoBase * 9) / 100;
-		return impuesto;
-	}
-
-	/**
-	 * @param impuesto the impuesto to set
-	 */
-	public void setImpuesto(double impuesto) {
-		this.impuesto = impuesto;
-	}
-
-	/**
-	 * @return the impuestoExtra
-	 */
-	public double getImpuestoExtra() {
-		return impuestoExtra;
-	}
-
-	/**
-	 * @param impuestoExtra the impuestoExtra to set
-	 */
-	public void setImpuestoExtra(double impuestoExtra) {
-		this.impuestoExtra = impuestoExtra;
-	}
-
-	/**
-	 * @return the sueldoTotal
-	 */
-	public double getSueldoTotal() {
-
-		return sueldoTotal;
-	}
-
-	/**
-	 * @param sueldoTotal the sueldoTotal to set
-	 */
-	public void setSueldoTotal(double sueldoTotal) {
-		sueldoTotal = sueldoBase + bonoPuesto + entregaSaldo - impuesto;
-		this.sueldoTotal = sueldoTotal;
-	}
-
-	/**
-	 * @return the entregaSaldo
-	 */
-	public double getEntregaSaldo() {
-		entregaSaldo = entrega * 5;
-		return entregaSaldo;
-	}
-
-	/**
-	 * @param entregaSaldo the entregaSaldo to set
-	 */
-	public void setEntregaSaldo(double entregaSaldo) {
-		this.entregaSaldo = entregaSaldo;
-	}
-
-	@Override
-	public String toString() {
-		return "ENEntidad [id=" + id + ", nombre=" + nombre + ", rol=" + rol + ", sueldoBase=" + sueldoBase
-				+ ", entrega=" + entrega + ", bonoPuesto=" + bonoPuesto + ", impuesto=" + impuesto + ", impuestoExtra="
-				+ impuestoExtra + ", sueldoTotal=" + sueldoTotal + "]";
-	}
 
 }

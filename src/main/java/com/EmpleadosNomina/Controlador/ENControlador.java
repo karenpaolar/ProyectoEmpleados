@@ -29,7 +29,6 @@ public class ENControlador {
 	@GetMapping("/empleados/nuevo")
 	public String crearEmpleadoFormulario(Model modelo) {
 		ENEntidad empleado = new ENEntidad();
-		
 		modelo.addAttribute("empleado", empleado);
 		return "crear_empleado";
 

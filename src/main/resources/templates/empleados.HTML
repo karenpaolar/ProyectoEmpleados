@@ -30,7 +30,7 @@
 	<div class="container">
 		
 		<div class="row">
-			<h1> Lista de empleados</h1>
+			<h1> Lista nomina empleados por mes</h1>
 		</div>
 		<div class="row">
 			<div class="col-lg-3">
@@ -50,7 +50,7 @@
 				<th>BonoPuesto</th>
 				<th>Impuesto</th>
 				<th>ImpuestoExtra</th>
-				<th>SueldoTotal</th>
+				<th>Sueldo Neto</th>
 				<th>Acciones</th>
 				
 				</tr>
@@ -66,7 +66,7 @@
 					<td th:text="${empleado.bonoPuesto}">BonoPuesto</td>
 					<td th:text="${empleado.impuesto}">Impuesto</td>
 					<td th:text="${empleado.impuestoExtra}">ImpuestoExtra</td>
-					<td th:text="${empleado.sueldoTotal}">SueldoTotal</td>
+					<td th:text="${empleado.sueldoTotal}">Sueldo Neto</td>
 					<td>
 						<a th:href="@{/empleados/movimientos/{id}(id=${empleado.id})}" class="btn btn-info">Movimientos</a>
 						<a th:href="@{/empleados/{id}(id=${empleado.id})}" class="btn btn-danger">Eliminar</a>
