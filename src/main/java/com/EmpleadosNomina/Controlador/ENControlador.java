@@ -66,7 +66,7 @@ public class ENControlador {
 
 	@GetMapping("/empleados/{id}")
 	public String eliminarEmpleado(@PathVariable Long id) {
-		servicio.eliminarEStudiante(id);
+		servicio.eliminarEmpleado(id);
 		return "redirect:/empleados";
 
 	}

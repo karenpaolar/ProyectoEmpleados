@@ -21,6 +21,8 @@ public class EmpleadosNominaApplication implements CommandLineRunner {
 	}
 	
 	
+	
+	
 	@Autowired
 	private ENRepositorio repositorio;
 	

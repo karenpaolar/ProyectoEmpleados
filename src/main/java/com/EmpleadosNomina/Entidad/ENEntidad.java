@@ -24,28 +24,42 @@ public class ENEntidad {
 	private String roll;
 	
 	@Column(name = "sueldoBase")
-	private Float sueldoBase;
+	private double sueldoBase;
 	
 	@Column(name = "entrega")
 	private Long entrega;
 	
 	@Column(name = "bonoPuesto")
-	private Float bonoPuesto;
+	private double bonoPuesto;
 	
 	@Column(name = "impuesto")
-	private Float impuesto;
+	private double impuesto;
 	
 	@Column(name = "impuestoExtra")
-	private Float impuestoExtra;
+	private double impuestoExtra;
 	
 	@Column(name = "sueldoTotal")
-	private Float sueldoTotal;
+	private double sueldoTotal;
 	
 	
 	
 	
 	
 
+
+	public ENEntidad(Long id, String nombre, String roll, double sueldoBase, Long entrega, double bonoPuesto,
+			double impuesto, double impuestoExtra, double sueldoTotal) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.roll = roll;
+		this.sueldoBase = sueldoBase;
+		this.entrega = entrega;
+		this.bonoPuesto = bonoPuesto;
+		this.impuesto = impuesto;
+		this.impuestoExtra = impuestoExtra;
+		this.sueldoTotal = sueldoTotal;
+	}
 
 	public ENEntidad(Long id, String nombre, String roll, Float sueldoBase, Long entrega, Float bonoPuesto,
 			Float impuesto, Float impuestoExtra, Float sueldoTotal) {
@@ -126,14 +140,14 @@ public class ENEntidad {
 	/**
 	 * @return the sueldoBase
 	 */
-	public Float getSueldoBase() {
+	public Double getSueldoBase() {
 		return sueldoBase;
 	}
 
 	/**
 	 * @param sueldoBase the sueldoBase to set
 	 */
-	public void setSueldoBase(Float sueldoBase) {
+	public void setSueldoBase(double sueldoBase) {
 		this.sueldoBase = sueldoBase;
 	}
 
@@ -154,56 +168,56 @@ public class ENEntidad {
 	/**
 	 * @return the bonoPuesto
 	 */
-	public Float getBonoPuesto() {
+	public Double getBonoPuesto() {
 		return bonoPuesto;
 	}
 
 	/**
 	 * @param bonoPuesto the bonoPuesto to set
 	 */
-	public void setBonoPuesto(Float bonoPuesto) {
+	public void setBonoPuesto(double bonoPuesto) {
 		this.bonoPuesto = bonoPuesto;
 	}
 
 	/**
 	 * @return the impuesto
 	 */
-	public Float getImpuesto() {
+	public Double getImpuesto() {
 		return impuesto;
 	}
 
 	/**
 	 * @param impuesto the impuesto to set
 	 */
-	public void setImpuesto(Float impuesto) {
+	public void setImpuesto(double impuesto) {
 		this.impuesto = impuesto;
 	}
 
 	/**
 	 * @return the impuestoExtra
 	 */
-	public Float getImpuestoExtra() {
+	public Double getImpuestoExtra() {
 		return impuestoExtra;
 	}
 
 	/**
 	 * @param impuestoExtra the impuestoExtra to set
 	 */
-	public void setImpuestoExtra(Float impuestoExtra) {
+	public void setImpuestoExtra(double impuestoExtra) {
 		this.impuestoExtra = impuestoExtra;
 	}
 
 	/**
 	 * @return the sueldoTotal
 	 */
-	public Float getSueldoTotal() {
+	public Double getSueldoTotal() {
 		return sueldoTotal;
 	}
 
 	/**
 	 * @param sueldoTotal the sueldoTotal to set
 	 */
-	public void setSueldoTotal(Float sueldoTotal) {
+	public void setSueldoTotal(double sueldoTotal) {
 		this.sueldoTotal = sueldoTotal;
 	}
 	

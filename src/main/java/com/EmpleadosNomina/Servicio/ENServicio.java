@@ -10,12 +10,11 @@ public interface ENServicio {
 	
 	public ENEntidad guardarEmpleado(ENEntidad empleado);
 	
-	
 	public ENEntidad obtenerEmpleadoPorId(Long id);
 	
 	public ENEntidad actualizarEmpleado(ENEntidad empleado);
 	
-	public void eliminarEStudiante(Long id);
+	public void eliminarEmpleado(Long id);
 	
 
 

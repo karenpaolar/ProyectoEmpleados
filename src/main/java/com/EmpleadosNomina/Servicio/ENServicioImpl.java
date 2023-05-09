@@ -35,7 +35,7 @@ public class ENServicioImpl implements ENServicio {
 	}
 
 	@Override
-	public void eliminarEStudiante(Long id) {
+	public void eliminarEmpleado(Long id) {
 		repositorio.deleteById(id);
 
 	}
