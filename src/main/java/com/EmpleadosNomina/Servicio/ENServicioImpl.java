@@ -5,7 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.EmpleadosNomina.Entidad.ENEntidad;
+
+import com.EmpleadosNomina.Entidad.EmpleadosEN;
 import com.EmpleadosNomina.Repositorio.ENRepositorio;
 
 @Service
@@ -15,30 +16,32 @@ public class ENServicioImpl implements ENServicio {
 	private ENRepositorio repositorio;
 
 	@Override
-	public List<ENEntidad> listaEmpleados() {
+	public List<EmpleadosEN> listaEmpleados() {
 		return repositorio.findAll();
 	}
 
+
 	@Override
-	public ENEntidad guardarEmpleado(ENEntidad empleado) {
+	public EmpleadosEN guardarEmpleado(EmpleadosEN empleado) {
 		return repositorio.save(empleado);
 	}
 
 	@Override
-	public ENEntidad obtenerEmpleadoPorId(Long id) {
-		return repositorio.findById(id).get();
+	public EmpleadosEN obtenerEmpleadoPorId(Integer idempleado) {
+		return repositorio.findById(idempleado).get();
 	}
 
 	@Override
-	public ENEntidad actualizarEmpleado(ENEntidad empleado) {
+	public EmpleadosEN actualizarEmpleado(EmpleadosEN empleado) {
 		return repositorio.save(empleado);
 	}
 
 	@Override
-	public void eliminarEmpleado(Long id) {
-		repositorio.deleteById(id);
-
+	public void eliminarEmpleado(Integer idempleado) {
+		repositorio.deleteById(idempleado);
+		
 	}
+
 
 	
 

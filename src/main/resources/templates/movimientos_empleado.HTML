@@ -34,17 +34,17 @@
 					<form th:action="@{/empleados/{id}(id=${empleado.id})}" th:object="${empleado}" method="POST">
 						<div class="form-group">
 							<label>Número de empleado:</label>
-							<input type="text" name="id" th:field="*{id}" class="form-control"
+							<input type="text" name="id" th:field="*{idempleado}" class="form-control"
 								placeholder="Digite su numero" required>
 						</div>
 						<br>
 						<div class="form-group">
 							<label>Nombre :</label>
-							<input type="text" name="nombre" th:field="*{nombre}" class="form-control"
+							<input type="text" name="nombre" th:field="*{nombreempleado}" class="form-control"
 								placeholder="Digite su nombre" required>
 						</div>
 					
-						<div class="form-group">
+					<!--	<div class="form-group">
 							<label>Rol :</label>
 							<input type="text" name="rol" th:field="*{rol}" class="form-control"
 								placeholder="Digite su rol" required>
@@ -59,13 +59,13 @@
 							<label>Cantidad de entregas :</label>
 							<input type="text" name="entrega" th:field="*{entrega}" class="form-control"
 								placeholder="Digite la cantidad de entregas" required>
-						</div>
+						</div>   
 						
 						<br>
 						<div class="box-footer">
 							<button class="btn btn-success"> Guardar</button>
 							<a th:href="@{/empleados}" class="btn btn-secondary">Cancelar</a>
-						</div>
+						</div> -->
 						
 
 					</form>
