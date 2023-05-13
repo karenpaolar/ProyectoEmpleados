@@ -12,6 +12,7 @@
 </head>
 
 <body>
+<<<<<<< HEAD
 
 	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
 		<a class="navbar-brand" href="#">Control de Empleados</a>
@@ -27,6 +28,13 @@
 
 	<div class="container">
 
+=======
+	
+	
+	
+	
+	<div class="container">
+>>>>>>> 644e9e94eab1a32de58211debe1ff3ab1ef990b8
 		<div class="row">
 			<h1> Lista nomina empleados por mes</h1>
 
@@ -83,7 +91,51 @@
 			<a th:href="@{/empleados/crear_empleado}" class="btn btn-primary">Registrar nuevo
 					empleado</a>
 		</div>
+<<<<<<< HEAD
 
+=======
+		<br>
+		<table class="table table-striped table-bordered">
+			<thead class="table-light">
+				</tr>
+				<th>Numero</th>
+				<th>Nombre</th>
+				<th>Rol</th>
+				<th>SueldoBase</th>
+				<th>Entrega</th>
+				<th>EntregaSaldo</th>
+				<th>BonoPuesto</th>
+				<th>Impuesto</th>
+				<th>ImpuestoExtra</th>
+				<th>Sueldo Neto</th>
+				<th>Vales de despensa</th>
+				<th>Acciones</th> 
+				</tr>
+			</thead>
+			
+			<tbody>	
+				<tr data-th-each="empleado : ${empleados}">
+					<td data-th-text="${empleado.idempleado}">Numero</td>
+					<td data-th-text="${empleado.nombreempleado}">Nombre</td>
+					<!-- <td th:text="${empleado.rolempleado}">Rol</td>
+					<td th:text="${empleado.sueldoBase}">SueldoBase</td>
+					<td th:text="${empleado.entrega}">Entrega</td>
+					<td th:text="${empleado.entregaSaldo}">EntregaSaldo</td>
+					<td th:text="${empleado.bonoPuesto}">BonoPuesto</td>
+					<td th:text="${empleado.impuesto}">Impuesto</td>
+					<td th:text="${empleado.impuestoExtra}">ImpuestoExtra</td>
+					<td th:text="${empleado.sueldoTotal}">Sueldo Neto</td>
+					<td th:text="${empleado.valesDespensa}">vales de deapensa</td>  
+
+					<td>
+						<a th:href="@{/empleados/movimientos/{id}(id=${empleado.id})}" class="btn btn-info">Movimientos</a>
+						<a th:href="@{/empleados/{id}(id=${empleado.id})}" class="btn btn-danger">Eliminar</a>
+					</td>-->
+				
+				</tr>
+			</tbody>
+		</table>
+>>>>>>> 644e9e94eab1a32de58211debe1ff3ab1ef990b8
 	</div>
 
 </body>
