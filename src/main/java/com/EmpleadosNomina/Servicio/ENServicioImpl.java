@@ -28,6 +28,7 @@ public class ENServicioImpl implements ENServicio {
 	public ENEntidad obtenerEmpleadoPorId(Long id) {
 		return repositorio.findById(id).get();
 	}
+	
 
 	@Override
 	public ENEntidad actualizarEmpleado(ENEntidad empleado) {
@@ -40,8 +41,5 @@ public class ENServicioImpl implements ENServicio {
 
 	}
 
-	
-
-	
 
 }

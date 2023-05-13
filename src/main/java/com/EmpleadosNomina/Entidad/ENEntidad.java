@@ -5,255 +5,193 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "Empleados")
 public class ENEntidad {
 
-
-
-	@Override
-	public String toString() {
-		return "ENEntidad [id=" + id + ", nombre=" + nombre + ", rol=" + rol + ", sueldoBase=" + sueldoBase
-				+ ", entrega=" + entrega + ", entregaSaldo=" + entregaSaldo + ", bonoPuesto=" + bonoPuesto
-				+ ", impuesto=" + impuesto + ", impuestoExtra=" + impuestoExtra + ", sueldoTotal=" + sueldoTotal
-				+ ", valesDespensa=" + valesDespensa + "]";
-	}
-
-	/**
-	 * @return the id
-	 */
-	public Long getId() {
-		return id;
-	}
-
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	/**
-	 * @return the nombre
-	 */
-	public String getNombre() {
-		return nombre;
-	}
-
-	/**
-	 * @param nombre the nombre to set
-	 */
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	/**
-	 * @return the rol
-	 */
-	public String getRol() {
-		return rol;
-	}
-
-	/**
-	 * @param rol the rol to set
-	 */
-	public void setRol(String rol) {
-		this.rol = rol;
-	}
-
-	/**
-	 * @return the sueldoBase
-	 */
-	public double getSueldoBase() {
-		return sueldoBase;
-	}
-
-	/**
-	 * @param sueldoBase the sueldoBase to set
-	 */
-	public void setSueldoBase(double sueldoBase) {
-		sueldoBase = 1440 * 4;
-		this.sueldoBase = sueldoBase;
-	}
-
-	/**
-	 * @return the entrega
-	 */
-	public Long getEntrega() {
-		return entrega;
-	}
-
-	/**
-	 * @param entrega the entrega to set
-	 */
-	public void setEntrega(Long entrega) {
-		this.entrega = entrega;
-	}
-
-	/**
-	 * @return the entregaSaldo
-	 */
-	public double getEntregaSaldo() {
-		return entregaSaldo;
-	}
-
-	/**
-	 * @param entregaSaldo the entregaSaldo to set
-	 */
-	public void setEntregaSaldo(double entregaSaldo) {
-		entregaSaldo = entrega * 5;
-		this.entregaSaldo = entregaSaldo;
-	}
-
-	/**
-	 * @return the bonoPuesto
-	 */
-	public double getBonoPuesto() {
-		if (rol.equals("Chofer")) {
-			bonoPuesto = 10 * 8 * 6 * 4;
-
-		} else if (rol.equals("Cargador")) {
-			bonoPuesto = 5 * 8 * 6 * 4;
-
-		} else {
-			bonoPuesto = 0;
-		}
-		return bonoPuesto;
-	}
-
-	/**
-	 * @param bonoPuesto the bonoPuesto to set
-	 */
-	public void setBonoPuesto(double bonoPuesto) {
-		this.bonoPuesto = bonoPuesto;
-	}
-
-	/**
-	 * @return the impuesto
-	 */
-	public double getImpuesto() {
-		impuesto = ((sueldoBase + entregaSaldo + bonoPuesto) * 9) / 100;
-		return impuesto;
-	}
-
-	/**
-	 * @param impuesto the impuesto to set
-	 */
-	public void setImpuesto(double impuesto) {
-		this.impuesto = impuesto;
-	}
-
-	/**
-	 * @return the impuestoExtra
-	 */
-	public double getImpuestoExtra() {
-		if((sueldoBase + entregaSaldo + bonoPuesto) >= 10000){
-			impuestoExtra = ((sueldoBase + entregaSaldo + bonoPuesto) * 3) / 100;
-			
-		}else {
-			impuestoExtra = 0;
-		}
-		
-		return impuestoExtra;
-	}
-
-	/**
-	 * @param impuestoExtra the impuestoExtra to set
-	 */
-	public void setImpuestoExtra(double impuestoExtra) {
-		this.impuestoExtra = impuestoExtra;
-	}
-
-	/**
-	 * @return the sueldoTotal
-	 */
-	public double getSueldoTotal() {
-		sueldoTotal = sueldoBase + bonoPuesto + entregaSaldo - impuesto;
-		return sueldoTotal;
-	}
-
-	/**
-	 * @param sueldoTotal the sueldoTotal to set
-	 */
-	public void setSueldoTotal(double sueldoTotal) {
-		this.sueldoTotal = sueldoTotal;
-	}
 	
-	/**
-	 * @return the valesDespensa
-	 */
-	public double getValesDespensa() {
-		valesDespensa = ((sueldoBase + bonoPuesto) * 4)/100;
-		return valesDespensa;
-	}
-
-	/**
-	 * @param valesDespensa the valesDespensa to set
-	 */
-	public void setValesDespensa(double valesDespensa) {
-		this.valesDespensa = valesDespensa;
-	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "nombre", nullable = false, length = 50)
+	@Column(name = "nombre")
 	private String nombre;
+	
+	@ManyToOne
+	@JoinColumn(name="rolempleado")
+	private ENRol rolfk;
 
-	@Column(name = "rol", nullable = false, length = 50)
-	private String rol;
-
-	@Column(name = "sueldoBase")
-	private double sueldoBase;
+	@Column(name = "sueldobase")
+	private Integer sueldobase;
 
 	@Column(name = "entrega")
-	private Long entrega;
+	private Integer entrega;
 
-	@Column(name = "entregaSaldo")
-	private double entregaSaldo;
+	@Column(name = "entregasaldo")
+	private Integer entregasaldo;
 
-	@Column(name = "bonoPuesto")
-	private double bonoPuesto;
 
 	@Column(name = "impuesto")
-	private double impuesto;
+	private Integer impuesto;
 
-	@Column(name = "impuestoExtra")
-	private double impuestoExtra;
+	@Column(name = "impuestoextra")
+	private Integer impuestoextra;
 
-	@Column(name = "sueldoTotal")
-	private double sueldoTotal;
+	@Column(name = "sueldototal")
+	private Integer sueldototal;
+
+	@Column(name = "valesdespensa")
+	private Integer valesdespensa;
 	
-	@Column(name = "valesDespensa")
-	private double valesDespensa;
-
-
-
-	public ENEntidad(Long id, String nombre, String rol, double sueldoBase, Long entrega, double entregaSaldo,
-			double bonoPuesto, double impuesto, double impuestoExtra, double sueldoTotal, double valesDespensa) {
-		super();
-		this.id = id;
-		this.nombre = nombre;
-		this.rol = rol;
-		this.sueldoBase = sueldoBase;
-		this.entrega = entrega;
-		this.entregaSaldo = entregaSaldo;
-		this.bonoPuesto = bonoPuesto;
-		this.impuesto = impuesto;
-		this.impuestoExtra = impuestoExtra;
-		this.sueldoTotal = sueldoTotal;
-		this.valesDespensa = valesDespensa;
-	}
-
+	
+	
 	public ENEntidad() {
 		super();
 	}
 
+
+	public ENEntidad(Long id, String nombre, ENRol rolfk, Integer sueldobase, Integer entrega, Integer entregasaldo,
+			Integer impuesto, Integer impuestoextra, Integer sueldototal, Integer valesdespensa) {
+		this.id = id;
+		this.nombre = nombre;
+		this.rolfk = rolfk;
+		this.sueldobase = sueldobase;
+		this.entrega = entrega;
+		this.entregasaldo = entregasaldo;
+		this.impuesto = impuesto;
+		this.impuestoextra = impuestoextra;
+		this.sueldototal = sueldototal;
+		this.valesdespensa = valesdespensa;
+	}
+
+
+
+	
+	public Long getId() {
+		return id;
+	}
+
+	
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	
+	public String getNombre() {
+		return nombre;
+	}
+
+	
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+
+	public Integer getSueldobase() {
+		sueldobase = 1440 * 4;
+		return sueldobase;
+	}
+
+
+	public void setSueldobase(Integer sueldobase) {
+		this.sueldobase = sueldobase;
+	}
+
+
+	public Integer getEntrega() {
+		return entrega;
+	}
+
+
+	public void setEntrega(Integer entrega) {
+		this.entrega = entrega;
+	}
+
+
+	public Integer getEntregasaldo() {
+		entregasaldo = entrega * 5;
+		return entregasaldo;
+	}
+
+
+	public void setEntregasaldo(Integer entregasaldo) {
+		this.entregasaldo = entregasaldo;
+	}
+
+
+	public Integer getImpuesto() {//falta el sueldo por rol
+		impuesto = ((sueldobase + entregasaldo) * 9) / 100;
+		return impuesto;
+	}
+
+
+	public void setImpuesto(Integer impuesto) {  
+		
+		this.impuesto = impuesto;
+	}
+
+
+	public Integer getImpuestoextra() {
+		if((sueldobase + entregasaldo) >= 10000){//falta el sueldo por rol
+			impuestoextra = ((sueldobase + entregasaldo ) * 3) / 100;
+			
+		}else {
+			impuestoextra = 0;
+		}
+		
+		return impuestoextra;
+	}
+		
+
+	public void setImpuestoextra(Integer impuestoextra) {
+		this.impuestoextra = impuestoextra;
+	}
+
+
+	public Integer getSueldototal() {
+		sueldototal = sueldobase + entregasaldo - impuesto;
+		
+		return sueldototal;
+	}
+
+
+	public void setSueldototal(Integer sueldototal) {
+		this.sueldototal = sueldototal;
+	}
+
+
+	public Integer getValesdespensa() {
+		valesdespensa = ((sueldobase ) * 4)/100;
+		return valesdespensa;
+	}
+
+
+	public void setValesdespensa(Integer valesdespensa) {
+		this.valesdespensa = valesdespensa;
+	}
+
+	public ENRol getRolfk() {
+		return rolfk;
+	}
+
+	public void setRolfk(ENRol rolfk) {
+		this.rolfk = rolfk;
+	}
+
+
 	
 
-
+	@Override
+	public String toString() {
+		return "ENEntidad [id=" + id + ", nombre=" + nombre + ", roles=" + rolfk + ", sueldobase=" + sueldobase
+				+ ", entrega=" + entrega + ", entregasaldo=" + entregasaldo + ", impuesto=" + impuesto
+				+ ", impuestoextra=" + impuestoextra + ", sueldototal=" + sueldototal + ", valesdespensa="
+				+ valesdespensa + "]";
+	}
 
 }

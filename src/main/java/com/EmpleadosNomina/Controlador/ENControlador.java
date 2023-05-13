@@ -3,78 +3,91 @@ package com.EmpleadosNomina.Controlador;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.saml2.Saml2RelyingPartyProperties.Registration.Signing;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.EmpleadosNomina.Entidad.ENEntidad;
-import com.EmpleadosNomina.Servicio.ENServicio;
+import com.EmpleadosNomina.Entidad.ENRol;
+import com.EmpleadosNomina.Repositorio.ENRepositorio;
+import com.EmpleadosNomina.Repositorio.RolRepositorio;
+
 
 @Controller
 public class ENControlador {
 
+
 	@Autowired
-	private ENServicio servicio;
-
-	@GetMapping({ "/empleados", "/" })
-	public String listarEmpleados(Model modelo) {
-		modelo.addAttribute("empleados", servicio.listaEmpleados());
-		return "empleados";
-
-	}
-
-	@GetMapping("/empleados/nuevo")
-	public String crearEmpleadoFormulario(Model modelo) {
-		ENEntidad empleado = new ENEntidad();
+	private ENRepositorio enRepositorio;
+	
+	@Autowired
+	private RolRepositorio rolRepositorio;
+	
+	@GetMapping("/empleados")
+	public String listarEmpleado(Model modelo) {
+		List<ENEntidad> empleado = enRepositorio.findAll();
 		modelo.addAttribute("empleado", empleado);
+		return "empleados";	
+		}
+	
+	@GetMapping("/empleados/crear_empleado")
+	public String mostrarEmpleadoFormulario(Model modelo) {
+		modelo.addAttribute("empleado", new ENEntidad());
+		
 		return "crear_empleado";
 
 	}
 
 	
-
-	@PostMapping("/empleados")
-	public String guardarEmpleados(@ModelAttribute("empleado") ENEntidad empleado) {
-		servicio.guardarEmpleado(empleado);
+	@PostMapping("/empleados/crear_empleado")
+	public String guardarEmpleado(ENEntidad empleado, RedirectAttributes redirect ) {
+		enRepositorio.save(empleado);
 		return "redirect:/empleados";
-
+		
 	}
-
 	
 
-	@GetMapping("/empleados/movimientos/{id}")
-	public String mostrarFormularioDeEditar(@PathVariable Long id, Model modelo) {
-		modelo.addAttribute("empleado", servicio.obtenerEmpleadoPorId(id));
+	@GetMapping("empleados/movimientos/{id}")
+	public String mostrarFormularioDeEditarEmpleado(@PathVariable Long id, Model modelo) {
+		modelo.addAttribute("empleado", enRepositorio.findById(id).get());
+		
 		return "movimientos_empleado";
 
 	}
+	
+	
 
 	@PostMapping("/empleados/{id}")
-	public String actualizarEmpleado(@PathVariable Long id, @ModelAttribute("empleado") ENEntidad empleado,
+	public String actualizarRol(@PathVariable Long id, @ModelAttribute("empleado") ENEntidad empleado,
 			Model modelo) {
-		ENEntidad empleadoExistente = servicio.obtenerEmpleadoPorId(id);
+		
+		ENEntidad empleadoExistente = enRepositorio.findById(id).get();
 		empleadoExistente.setId(id);
 		empleadoExistente.setNombre(empleado.getNombre());
-		empleadoExistente.setSueldoBase(empleado.getSueldoBase());
-		empleadoExistente.setRol(empleado.getRol());
+		empleadoExistente.setRolfk(empleado.getRolfk());
+		empleadoExistente.setSueldobase(empleado.getSueldobase());
 		empleadoExistente.setEntrega(empleado.getEntrega());
-		empleadoExistente.setEntregaSaldo(empleado.getEntregaSaldo());
-		empleadoExistente.setBonoPuesto(empleado.getBonoPuesto());
+		empleadoExistente.setEntregasaldo(empleado.getEntregasaldo());
 		empleadoExistente.setImpuesto(empleado.getImpuesto());
-		empleadoExistente.setSueldoTotal(empleado.getSueldoTotal());
-		empleadoExistente.setValesDespensa(empleado.getValesDespensa());
-
-		servicio.actualizarEmpleado(empleadoExistente);
+		empleadoExistente.setImpuestoextra(empleado.getImpuestoextra());
+		empleadoExistente.setSueldototal(empleado.getSueldototal());
+		empleadoExistente.setValesdespensa(empleado.getValesdespensa());
+	
+		
+		enRepositorio.save(empleadoExistente);
 		return "redirect:/empleados";
 
 	}
 
-	@GetMapping("/empleados/{id}")
+	@GetMapping("/empleados/eliminar/{id}")
 	public String eliminarEmpleado(@PathVariable Long id) {
-		servicio.eliminarEmpleado(id);
+		enRepositorio.deleteById(id);
 		return "redirect:/empleados";
 
 	}
@@ -83,3 +96,4 @@ public class ENControlador {
 	
 	
 }
+

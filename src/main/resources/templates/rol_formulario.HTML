@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<title>Listado puestos</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+		crossorigin="anonymous"></script>
+</head>
+
+<body>
+			<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+			<a class="navbar-brand" href="#">Control de rol</a>
+			<!-- Navbar links -->
+			<div class="collapse navbar-collapse" id="collapsibleNavbar">
+				<ul class="navbar-nav">
+					<li class="nav-item"><a class="nav-link"
+					th:href="@{/empleados}">Control de Empleados</a></li>
+					
+				</ul>
+			</div>
+		</nav>
+	
+	
+	
+	<div class="container">
+		
+		<div class="row">
+			<h1> Listado puestos</h1>
+		
+		<br>
+		<table class="table table-striped table-bordered">
+			<thead class="table-light">
+				</tr>
+				<th>NumeroRol</th>
+				<th>NombreRol</th>
+				<th>BonoPuesto</th>			
+				<th>Acciones</th>
+
+				</tr>
+			</thead>
+		<tbody>
+				<tr th:each="roles : ${roles}">
+					<td th:text="${roles.idrol}"></td>
+					<td th:text="${roles.nombrerol}"></td>
+					<td th:text="${roles.sueldorol}"></td>
+					
+					<td>
+						 <a th:href="@{/rol_formulario/movimientosrol/{idrol}(idrol=${roles.idrol})}" class="btn btn-info">Movimientos</a> 
+						<a th:href="@{/rol_formulario/{idrol}(idrol=${roles.idrol})}" class="btn btn-danger">Eliminar</a>
+					</td>
+				
+				</tr>
+			</tbody> 
+		</table>
+	</div>
+	<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+			<a th:href="@{/rol_formulario/crear_rol}" class="btn btn-primary">Registrar nuevo rol</a>
+		</div>
+	</div>
+
+</body>
+
+</html>

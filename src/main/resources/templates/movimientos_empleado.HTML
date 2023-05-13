@@ -13,17 +13,6 @@
 
 <body>
 
-	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
-		<a class="navbar-brand" href="#">Movimientos de Empleados</a>
-		<!-- Navbar links -->
-		<div class="collapse navbar-collapse" id="collapsibleNavbar">
-			<ul class="navbar-nav">
-				<li class="nav-item"><a class="nav-link" th:href="@{/empleados}">Movimientos de Empleados</a></li>
-
-			</ul>
-		</div>
-
-	</nav>
 
 	<br>
 	<div class="container">
@@ -46,8 +35,8 @@
 					
 						<div class="form-group">
 							<label>Rol :</label>
-							<input type="text" name="rol" th:field="*{rol}" class="form-control"
-								placeholder="Digite su rol" required>
+							<input type="text" name="rol" th:field="*{roles.idrol}" class="form-control"
+								placeholder="Digite su rol" >
 						</div>
 						<div class="form-group">
 							<label>Mes :</label>
