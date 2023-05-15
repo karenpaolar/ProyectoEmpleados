@@ -27,49 +27,36 @@
 							<input type="text" name="idrol" th:field="*{idrol}" class="form-control"
 								placeholder="Digite su numero" required>
 						</div>
-						<br>
-						<!-- <div class="form-group">
-							<label>Nombre del rol :</label>
+						
+						<!--	<div class="form-group">
+							<label>Nombre rol:</label>
 							<input type="text" name="nombrerol" th:field="*{nombrerol}" class="form-control"
-								placeholder="Digite el nombre del rol" required>
-						</div> -->
-						<div>
+								placeholder="Digite el nombre" required>
+						</div>
+					
+					<div>
 							<select th:field="*{nombrerol}">
 								<option th:value="Chofer" th:text="Chofer"></option>
 								<option th:value="2" th:text="Cargador"></option>
+								<option th:value="3" th:text="Auxiliar"></option>
 							</select>
 
-						</div>
-
-						<select th:field="*{nombrerol}" class="form-control" id="dropDownList">
-							<option value="0">select option</option>
-							<option th:each="roles : ${roles}" th:value="${nombrerol}" th:text="${nombrerol}"></option>
-						</select>
-
-
-
-						<!--	<div class="col-auto">
-							<label class="visually-hidden" for="autoSizingSelect">Preference</label>
-							<select th:field="*{rolnombre}" class="form-select">
-
-								<option th:value="${idrol}" th:text="${nombrerol}"></option>
-
-							</select>
 						</div>-->
 
-
-
-
-						<br>
-
 						<div class="form-group">
-							<label>Cantidad de entregas :</label>
+							<label>Sueldo del rol :</label>
 							<input type="text" name="sueldorol" th:field="*{sueldorol}" class="form-control"
 								placeholder="Digite el sueldo del rol" required>
 						</div>
-
-
-
+				
+						<div>
+							<label>Rol :</label>
+							<select th:field="*{nombrerol}" class="form-control" id="dropDownList">
+								<option th:each="listaRol : ${listaRol}" 
+									th:value="${listaRol.nombrerol}" 
+									th:text="${listaRol.nombrerol}"></option>
+							</select>
+						</div>
 						<br>
 						<div class="box-footer">
 							<button class="btn btn-success"> Guardar</button>

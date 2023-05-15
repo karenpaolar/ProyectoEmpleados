@@ -1,5 +1,7 @@
 package com.EmpleadosNomina.Entidad;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,7 +15,12 @@ import jakarta.persistence.Table;
 @Table(name = "Empleados")
 public class ENEntidad {
 
+
 	
+
+
+
+
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,6 +29,7 @@ public class ENEntidad {
 	@Column(name = "nombre")
 	private String nombre;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="rolempleado")
 	private ENRol rolfk;
@@ -47,11 +55,31 @@ public class ENEntidad {
 
 	@Column(name = "valesdespensa")
 	private Integer valesdespensa;
-	
-	
+
+
 	
 	public ENEntidad() {
-		super();
+	}
+
+
+	public ENEntidad(String nombre, ENRol rolfk, Integer sueldobase, Integer entrega, Integer entregasaldo,
+			Integer impuesto, Integer impuestoextra, Integer sueldototal, Integer valesdespensa) {
+		this.nombre = nombre;
+		this.rolfk = rolfk;
+		this.sueldobase = sueldobase;
+		this.entrega = entrega;
+		this.entregasaldo = entregasaldo;
+		this.impuesto = impuesto;
+		this.impuestoextra = impuestoextra;
+		this.sueldototal = sueldototal;
+		this.valesdespensa = valesdespensa;
+	}
+
+
+	public ENEntidad(Long id, String nombre, ENRol rolfk) {
+		this.id = id;
+		this.nombre = nombre;
+		this.rolfk = rolfk;
 	}
 
 
@@ -68,7 +96,8 @@ public class ENEntidad {
 		this.sueldototal = sueldototal;
 		this.valesdespensa = valesdespensa;
 	}
-
+	
+	
 
 
 	
@@ -110,6 +139,7 @@ public class ENEntidad {
 
 	public void setEntrega(Integer entrega) {
 		this.entrega = entrega;
+		
 	}
 
 
@@ -125,7 +155,8 @@ public class ENEntidad {
 
 
 	public Integer getImpuesto() {//falta el sueldo por rol
-		impuesto = ((sueldobase + entregasaldo) * 9) / 100;
+		impuesto = (sueldobase + entregasaldo ); //+ rolfk.getSueldorol() 
+		impuesto = (impuesto*9) / 100;
 		return impuesto;
 	}
 
@@ -154,7 +185,7 @@ public class ENEntidad {
 
 
 	public Integer getSueldototal() {
-		sueldototal = sueldobase + entregasaldo - impuesto;
+		sueldototal = sueldobase + entregasaldo - impuesto  + impuestoextra ;
 		
 		return sueldototal;
 	}
@@ -182,6 +213,26 @@ public class ENEntidad {
 	public void setRolfk(ENRol rolfk) {
 		this.rolfk = rolfk;
 	}
+	
+	public Long getIdrol() {
+		return rolfk.getIdrol();
+	}
+
+	public String getNombrerol() {
+		return rolfk.getNombrerol();
+	}
+
+	public Integer getSueldorol() {
+		return rolfk.getSueldorol();
+	}
+
+	
+
+	
+
+
+	
+	
 
 
 	

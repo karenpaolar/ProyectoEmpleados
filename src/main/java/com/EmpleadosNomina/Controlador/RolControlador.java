@@ -46,6 +46,8 @@ public class RolControlador {
 	public String guardarRol(ENRol roles, RedirectAttributes redirect ) {
 		rolRepositorio.save(roles);
 		//redirect.addFlashAttribute("msgExito", "El rol se agrego");
+		
+		
 		return "redirect:/rol_formulario";
 		
 	}
@@ -66,6 +68,8 @@ public class RolControlador {
 	public String mostrarFormularioDeEditarRol(@PathVariable Long idrol, Model modelo) {
 		modelo.addAttribute("roles", rolRepositorio.findById(idrol).get());
 		
+		List<ENRol> listaRol = rolRepositorio.findAll();
+		modelo.addAttribute("listaRol",listaRol);
 		return "movimientosrol_rol";
 
 	}
@@ -80,9 +84,10 @@ public class RolControlador {
 		rolExistente.setNombrerol(roles.getNombrerol());
 		rolExistente.setSueldorol(roles.getSueldorol());
 		rolRepositorio.save(rolExistente);
+	
 		return "redirect:/rol_formulario";
-
 	}
+	
 
 	@GetMapping("/rol_formulario/{idrol}")
 	public String eliminarEmpleado(@PathVariable Long idrol) {
@@ -90,6 +95,16 @@ public class RolControlador {
 		return "redirect:/rol_formulario";
 
 	}
+	
+	/*@GetMapping("/movimientosrol")
+	public String listaRol(Model modelo) {
+		List<ENRol> listaRol = rolRepositorio.findAll();
+		modelo.addAttribute("listaRol", listaRol);
+	
+		return "movimientosrol";
+	}*/
+	
+	
 	
 	
 

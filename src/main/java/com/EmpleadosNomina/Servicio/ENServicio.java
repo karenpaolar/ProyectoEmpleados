@@ -2,18 +2,18 @@ package com.EmpleadosNomina.Servicio;
 
 import java.util.List;
 
+import com.EmpleadosNomina.Entidad.ENEntidad;
 
-import com.EmpleadosNomina.Entidad.EmpleadosEN;
 
 public interface ENServicio {
 	
-	public List<EmpleadosEN> listaEmpleados();
+	public List<ENEntidad> listaEmpleados();
 	
-	public EmpleadosEN guardarEmpleado(EmpleadosEN empleado);
+	public ENEntidad guardarEmpleado(ENEntidad empleado);
 	
-	public EmpleadosEN obtenerEmpleadoPorId(Integer idempleado);
+	public ENEntidad obtenerEmpleadoPorId(Integer idempleado);
 	
-	public EmpleadosEN actualizarEmpleado(EmpleadosEN empleado);
+	public ENEntidad actualizarEmpleado(ENEntidad empleado);
 	
 	public void eliminarEmpleado(Integer idempleado);
 

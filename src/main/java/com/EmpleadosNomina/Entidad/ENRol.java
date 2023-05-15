@@ -26,11 +26,11 @@ public class ENRol {
 	
 
 	public ENRol() {
-		super();
+		
 	}
 
 	public ENRol(Long idrol, String nombrerol, Integer sueldorol) {
-		super();
+		
 		this.idrol = idrol;
 		this.nombrerol = nombrerol;
 		this.sueldorol = sueldorol;

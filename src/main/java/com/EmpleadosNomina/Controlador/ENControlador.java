@@ -10,8 +10,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-<<<<<<< HEAD
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.EmpleadosNomina.Entidad.ENEntidad;
@@ -19,19 +22,12 @@ import com.EmpleadosNomina.Entidad.ENRol;
 import com.EmpleadosNomina.Repositorio.ENRepositorio;
 import com.EmpleadosNomina.Repositorio.RolRepositorio;
 
-=======
-
-
-import com.EmpleadosNomina.Entidad.EmpleadosEN;
-import com.EmpleadosNomina.Servicio.ENServicio;
->>>>>>> 644e9e94eab1a32de58211debe1ff3ab1ef990b8
 
 @Controller
 public class ENControlador {
 
 
 	@Autowired
-<<<<<<< HEAD
 	private ENRepositorio enRepositorio;
 	
 	@Autowired
@@ -41,116 +37,95 @@ public class ENControlador {
 	public String listarEmpleado(Model modelo) {
 		List<ENEntidad> empleado = enRepositorio.findAll();
 		modelo.addAttribute("empleado", empleado);
+	
+		
+		//System.out.println(empleado);
+		
 		return "empleados";	
 		}
+	
+
+	
 	
 	@GetMapping("/empleados/crear_empleado")
 	public String mostrarEmpleadoFormulario(Model modelo) {
 		modelo.addAttribute("empleado", new ENEntidad());
-=======
-	private ENServicio servicio;
-
-	@GetMapping({ "/empleados", "/" })
-	public String listarEmpleados(Model modelo) {
-		modelo.addAttribute("empleados", servicio.listaEmpleados());
-		return "empleados";
-
-	}
-
-	@GetMapping("/empleados/nuevo")
-	public String crearEmpleadoFormulario(Model modelo) {
-		EmpleadosEN empleado = new EmpleadosEN();
-		modelo.addAttribute("empleado", empleado);
->>>>>>> 644e9e94eab1a32de58211debe1ff3ab1ef990b8
+		
+		List<ENRol> listaRole = rolRepositorio.findAll();
+		modelo.addAttribute("listaRole",listaRole);
 		
 		return "crear_empleado";
 
 	}
 
 	
-<<<<<<< HEAD
 	@PostMapping("/empleados/crear_empleado")
-	public String guardarEmpleado(ENEntidad empleado, RedirectAttributes redirect ) {
+	public String guardarEmpleado(ENEntidad empleado, ENRol rolfk,  RedirectAttributes redirect ) {
+		empleado.setSueldobase(empleado.getSueldobase());
+		rolfk.setSueldorol(rolfk.getSueldorol());
+		empleado.setEntrega(0);
+		empleado.setEntregasaldo(0);
+		empleado.setImpuesto(empleado.getEntrega());
+		empleado.setImpuestoextra(1);
+		empleado.setSueldototal(empleado.getSueldototal());
+		empleado.setValesdespensa(empleado.getValesdespensa());
+		//System.out.println(empleado);
 		enRepositorio.save(empleado);
-=======
-
-	@PostMapping("/empleados")
-	public String guardarEmpleados(@ModelAttribute("empleado") EmpleadosEN empleado) {
-		servicio.guardarEmpleado(empleado);
->>>>>>> 644e9e94eab1a32de58211debe1ff3ab1ef990b8
-		return "redirect:/empleados";
 		
+		return "redirect:/empleados";	
 	}
 	
 
-<<<<<<< HEAD
-	@GetMapping("empleados/movimientos/{id}")
+	
+
+	@GetMapping("empleados/movimientos_empleado/{id}")
 	public String mostrarFormularioDeEditarEmpleado(@PathVariable Long id, Model modelo) {
 		modelo.addAttribute("empleado", enRepositorio.findById(id).get());
 		
-=======
-	@GetMapping("/empleados/movimientos/{idempleados}")
-	public String mostrarFormularioDeEditar(@PathVariable Integer idempleado, Model modelo) {
-		modelo.addAttribute("empleado", servicio.obtenerEmpleadoPorId(idempleado));
->>>>>>> 644e9e94eab1a32de58211debe1ff3ab1ef990b8
+		List<ENRol> listaRole = rolRepositorio.findAll();
+		modelo.addAttribute("listaRole",listaRole);
+		
 		return "movimientos_empleado";
-
 	}
 	
-	
 
-<<<<<<< HEAD
+	
 	@PostMapping("/empleados/{id}")
-	public String actualizarRol(@PathVariable Long id, @ModelAttribute("empleado") ENEntidad empleado,
-			Model modelo) {
-		
-		ENEntidad empleadoExistente = enRepositorio.findById(id).get();
-		empleadoExistente.setId(id);
-		empleadoExistente.setNombre(empleado.getNombre());
-		empleadoExistente.setRolfk(empleado.getRolfk());
-		empleadoExistente.setSueldobase(empleado.getSueldobase());
-		empleadoExistente.setEntrega(empleado.getEntrega());
-		empleadoExistente.setEntregasaldo(empleado.getEntregasaldo());
-		empleadoExistente.setImpuesto(empleado.getImpuesto());
-		empleadoExistente.setImpuestoextra(empleado.getImpuestoextra());
-		empleadoExistente.setSueldototal(empleado.getSueldototal());
-		empleadoExistente.setValesdespensa(empleado.getValesdespensa());
-	
-		
-		enRepositorio.save(empleadoExistente);
-=======
-	@PostMapping("/empleados/{idempleados}")
-	public String actualizarEmpleado(@PathVariable Integer idempleado, @ModelAttribute("empleado") EmpleadosEN empleado,
-			Model modelo) {
-		EmpleadosEN empleadoExistente = servicio.obtenerEmpleadoPorId(idempleado);
-		empleadoExistente.setIdEmpleado(idempleado);
-		empleadoExistente.setNombreEmpleado(empleado.getNombreEmpleado());
-		//empleadoExistente.setSueldoBase(empleado.getSueldoBase());
-		//empleadoExistente.setRolEmpleado(empleado.getRolEmpleado());
-		//empleadoExistente.setEntrega(empleado.getEntrega());
-		//empleadoExistente.setEntregaSaldo(empleado.getEntregaSaldo());
-		//empleadoExistente.setBonoPuesto(empleado.getBonoPuesto());
-		//empleadoExistente.setImpuesto(empleado.getImpuesto());
-		//empleadoExistente.setSueldoTotal(empleado.getSueldoTotal());
-		//empleadoExistente.setValesDespensa(empleado.getValesDespensa());
+    public String actualizarEmpleado(@PathVariable Long id, @ModelAttribute ENEntidad empleado, ENRol rolfk, Model modelo) {
+    	ENEntidad empleadoexistent = enRepositorio.findById(id).get();
+    	
+    	empleadoexistent.setId(id);
+    	empleadoexistent.setSueldobase(empleado.getSueldobase());
+    	rolfk.setIdrol(rolfk.getIdrol());
+    	rolfk.setSueldorol(rolfk.getSueldorol());
+    	//rolfkExistent.setSueldorol(rolfk.getSueldorol());
+    	empleadoexistent.setRolfk(empleado.getRolfk());
+    	//empleadoexistent.setRolfk(empleado.getSueldorol());
+    	empleadoexistent.setEntrega(empleado.getEntrega());
+    	empleadoexistent.setEntregasaldo(empleado.getEntregasaldo());
+    	empleadoexistent.setImpuesto(empleado.getImpuesto());
+    	empleadoexistent.setImpuestoextra(empleado.getImpuestoextra());
+    	empleadoexistent.setSueldototal(empleado.getSueldototal());
+		empleadoexistent.setValesdespensa(empleado.getValesdespensa());
+    	enRepositorio.save(empleadoexistent);
+    	
+        return "redirect:/empleados";
+    }
 
-		servicio.actualizarEmpleado(empleadoExistente);
->>>>>>> 644e9e94eab1a32de58211debe1ff3ab1ef990b8
-		return "redirect:/empleados";
 
-	}
 
-<<<<<<< HEAD
 	@GetMapping("/empleados/eliminar/{id}")
 	public String eliminarEmpleado(@PathVariable Long id) {
 		enRepositorio.deleteById(id);
-=======
-	@GetMapping("/empleados/{idempleados}")
-	public String eliminarEmpleado(@PathVariable Integer idempleado) {
-		servicio.eliminarEmpleado(idempleado);
->>>>>>> 644e9e94eab1a32de58211debe1ff3ab1ef990b8
 		return "redirect:/empleados";
 
+	}
+	@GetMapping("/movimientos")
+	public String listaRol(Model modelo) {
+		List<ENRol> listaRol = rolRepositorio.findAll();
+		modelo.addAttribute("listarRol", listaRol);
+	
+		return "movimientos";
 	}
 	
 	

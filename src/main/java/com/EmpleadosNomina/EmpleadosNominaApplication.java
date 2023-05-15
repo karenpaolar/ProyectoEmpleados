@@ -5,7 +5,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.EmpleadosNomina.Entidad.EmpleadosEN;
+
 import com.EmpleadosNomina.Repositorio.ENRepositorio;
 
 
@@ -32,8 +32,7 @@ public class EmpleadosNominaApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		
-		EmpleadosEN empleado1 = new EmpleadosEN(null, "Karen Romero");
-		repositorio.save(empleado1);
+	
 		
 		/*
 		ENEntidad empleado2 = new ENEntidad("Juan Lopez", "Chofer");
