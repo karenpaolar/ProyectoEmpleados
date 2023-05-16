@@ -41,7 +41,7 @@
 						
 						<div>
 							<label>Rol :</label>
-							<select th:field="*{rolfk.idrol}" class="form-control" id="dropDownList">
+							<select th:field="*{rolfk}" class="form-control" id="dropDownList">
 								<option th:each="listaRole : ${listaRole}" 
 									th:value="${listaRole.idrol}" 
 									th:text="${listaRole.nombrerol}"></option>

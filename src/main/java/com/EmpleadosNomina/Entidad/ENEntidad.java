@@ -16,12 +16,6 @@ import jakarta.persistence.Table;
 public class ENEntidad {
 
 
-	
-
-
-
-
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -156,8 +150,9 @@ public class ENEntidad {
 
 
 	public Integer getImpuesto() {
-		impuesto = (sueldobase + entregasaldo + rolfk.getSueldorol()); 
+		impuesto = (sueldobase + entregasaldo + rolfk.getSueldorol() ); 
 		impuesto = (impuesto*9) / 100;
+		
 		return impuesto;
 	}
 

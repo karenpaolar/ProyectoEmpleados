@@ -66,8 +66,8 @@ public class ENControlador {
 		rolfk.setSueldorol(rolfk.getSueldorol());
 		empleado.setEntrega(0);
 		empleado.setEntregasaldo(0);
-		empleado.setImpuesto(empleado.getEntrega());
-		empleado.setImpuestoextra(1);
+		empleado.setImpuesto(empleado.getImpuesto());
+		empleado.setImpuestoextra(0);
 		empleado.setSueldototal(empleado.getSueldototal());
 		empleado.setValesdespensa(empleado.getValesdespensa());
 		//System.out.println(empleado);
@@ -100,15 +100,15 @@ public class ENControlador {
     	System.out.println("Aqui1 " + empleado);
     	empleadoexistent.setId(id);
     	empleadoexistent.setNombre(empleado.getNombre());
-    	//empleadoexistent.setSueldobase(empleado.getSueldobase());
-    	rolfk.setSueldorol(rolfk.getSueldorol());
+    	empleadoexistent.setSueldobase(empleado.getSueldobase());
+    	//rolfk.setSueldorol(rolfk.getSueldorol());
     	empleadoexistent.setRolfk(empleado.getRolfk());
     	empleadoexistent.setEntrega(empleado.getEntrega());
-    	//empleadoexistent.setEntregasaldo(empleado.getEntregasaldo());
-    	//empleadoexistent.setImpuesto(empleado.getImpuesto());
-    	//empleadoexistent.setImpuestoextra(empleado.getImpuestoextra());
-    	//empleadoexistent.setSueldototal(empleado.getSueldototal());
-		//empleadoexistent.setValesdespensa(empleado.getValesdespensa());
+    	empleadoexistent.setEntregasaldo(empleado.getEntregasaldo());
+    	empleadoexistent.setImpuesto(empleado.getImpuesto());
+    	empleadoexistent.setImpuestoextra(empleado.getImpuestoextra());
+    	empleadoexistent.setSueldototal(empleado.getSueldototal());
+		empleadoexistent.setValesdespensa(empleado.getValesdespensa());
     	
     	System.out.println("Aqui2 " + rolfk);
     	System.out.println("Aqui3 " + empleado); 
@@ -137,7 +137,6 @@ public class ENControlador {
 	}
 	
 	
-	
-	
 }
+
 
