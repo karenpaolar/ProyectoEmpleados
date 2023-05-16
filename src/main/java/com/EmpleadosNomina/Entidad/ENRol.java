@@ -64,6 +64,12 @@ public class ENRol {
 
 	
 	public Integer getSueldorol() {
+		if (sueldorol == null) {
+			sueldorol = 0; 
+		}else {
+			this.sueldorol = sueldorol;
+		}
+		
 		return sueldorol;
 	}
 

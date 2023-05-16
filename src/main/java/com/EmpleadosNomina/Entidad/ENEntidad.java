@@ -154,8 +154,8 @@ public class ENEntidad {
 	}
 
 
-	public Integer getImpuesto() {//falta el sueldo por rol
-		impuesto = (sueldobase + entregasaldo ); //+ rolfk.getSueldorol() 
+	public Integer getImpuesto() {
+		impuesto = (sueldobase + entregasaldo + rolfk.getSueldorol()); 
 		impuesto = (impuesto*9) / 100;
 		return impuesto;
 	}
@@ -169,7 +169,7 @@ public class ENEntidad {
 
 	public Integer getImpuestoextra() {
 		if((sueldobase + entregasaldo) >= 10000){//falta el sueldo por rol
-			impuestoextra = ((sueldobase + entregasaldo ) * 3) / 100;
+			impuestoextra = ((sueldobase + entregasaldo + rolfk.getSueldorol()) * 3) / 100;
 			
 		}else {
 			impuestoextra = 0;
@@ -185,7 +185,7 @@ public class ENEntidad {
 
 
 	public Integer getSueldototal() {
-		sueldototal = sueldobase + entregasaldo - impuesto  + impuestoextra ;
+		sueldototal = sueldobase + entregasaldo - impuesto + rolfk.getSueldorol() - impuestoextra ;
 		
 		return sueldototal;
 	}
@@ -197,7 +197,7 @@ public class ENEntidad {
 
 
 	public Integer getValesdespensa() {
-		valesdespensa = ((sueldobase ) * 4)/100;
+		valesdespensa = ((sueldobase + rolfk.getSueldorol()) * 4)/100;
 		return valesdespensa;
 	}
 
@@ -213,29 +213,8 @@ public class ENEntidad {
 	public void setRolfk(ENRol rolfk) {
 		this.rolfk = rolfk;
 	}
-	
-	public Long getIdrol() {
-		return rolfk.getIdrol();
-	}
-
-	public String getNombrerol() {
-		return rolfk.getNombrerol();
-	}
-
-	public Integer getSueldorol() {
-		return rolfk.getSueldorol();
-	}
-
-	
-
-	
 
 
-	
-	
-
-
-	
 
 	@Override
 	public String toString() {

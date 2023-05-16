@@ -61,6 +61,7 @@ public class ENControlador {
 	
 	@PostMapping("/empleados/crear_empleado")
 	public String guardarEmpleado(ENEntidad empleado, ENRol rolfk,  RedirectAttributes redirect ) {
+		empleado.setNombre(empleado.getNombre());
 		empleado.setSueldobase(empleado.getSueldobase());
 		rolfk.setSueldorol(rolfk.getSueldorol());
 		empleado.setEntrega(0);
@@ -91,16 +92,14 @@ public class ENControlador {
 
 	
 	@PostMapping("/empleados/{id}")
-    public String actualizarEmpleado(@PathVariable Long id, @ModelAttribute ENEntidad empleado, ENRol rolfk, Model modelo) {
+    public String actualizarEmpleado(@PathVariable Long id, ENEntidad empleado, ENRol rolfk, RedirectAttributes redirect) {
     	ENEntidad empleadoexistent = enRepositorio.findById(id).get();
     	
     	empleadoexistent.setId(id);
+    	empleadoexistent.setNombre(empleado.getNombre());
     	empleadoexistent.setSueldobase(empleado.getSueldobase());
-    	rolfk.setIdrol(rolfk.getIdrol());
     	rolfk.setSueldorol(rolfk.getSueldorol());
-    	//rolfkExistent.setSueldorol(rolfk.getSueldorol());
     	empleadoexistent.setRolfk(empleado.getRolfk());
-    	//empleadoexistent.setRolfk(empleado.getSueldorol());
     	empleadoexistent.setEntrega(empleado.getEntrega());
     	empleadoexistent.setEntregasaldo(empleado.getEntregasaldo());
     	empleadoexistent.setImpuesto(empleado.getImpuesto());
@@ -108,6 +107,8 @@ public class ENControlador {
     	empleadoexistent.setSueldototal(empleado.getSueldototal());
 		empleadoexistent.setValesdespensa(empleado.getValesdespensa());
     	enRepositorio.save(empleadoexistent);
+    	//rolRepositorio.save(rolfk);
+    	System.out.println(empleado.getNombre());
     	
         return "redirect:/empleados";
     }
