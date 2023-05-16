@@ -53,7 +53,7 @@ public class ENControlador {
 		
 		List<ENRol> listaRole = rolRepositorio.findAll();
 		modelo.addAttribute("listaRole",listaRole);
-		
+	
 		return "crear_empleado";
 
 	}
@@ -71,6 +71,7 @@ public class ENControlador {
 		empleado.setSueldototal(empleado.getSueldototal());
 		empleado.setValesdespensa(empleado.getValesdespensa());
 		//System.out.println(empleado);
+		System.out.println("Aqui " + rolfk.getSueldorol());
 		enRepositorio.save(empleado);
 		
 		return "redirect:/empleados";	
@@ -92,23 +93,29 @@ public class ENControlador {
 
 	
 	@PostMapping("/empleados/{id}")
-    public String actualizarEmpleado(@PathVariable Long id, ENEntidad empleado, ENRol rolfk, RedirectAttributes redirect) {
+    public String actualizarEmpleado(@PathVariable Long id,  ENEntidad empleado, ENRol rolfk, RedirectAttributes redirect) {
     	ENEntidad empleadoexistent = enRepositorio.findById(id).get();
     	
+    	System.out.println("Aqui " + rolfk);
+    	System.out.println("Aqui1 " + empleado);
     	empleadoexistent.setId(id);
     	empleadoexistent.setNombre(empleado.getNombre());
-    	empleadoexistent.setSueldobase(empleado.getSueldobase());
+    	//empleadoexistent.setSueldobase(empleado.getSueldobase());
     	rolfk.setSueldorol(rolfk.getSueldorol());
     	empleadoexistent.setRolfk(empleado.getRolfk());
     	empleadoexistent.setEntrega(empleado.getEntrega());
-    	empleadoexistent.setEntregasaldo(empleado.getEntregasaldo());
-    	empleadoexistent.setImpuesto(empleado.getImpuesto());
-    	empleadoexistent.setImpuestoextra(empleado.getImpuestoextra());
-    	empleadoexistent.setSueldototal(empleado.getSueldototal());
-		empleadoexistent.setValesdespensa(empleado.getValesdespensa());
+    	//empleadoexistent.setEntregasaldo(empleado.getEntregasaldo());
+    	//empleadoexistent.setImpuesto(empleado.getImpuesto());
+    	//empleadoexistent.setImpuestoextra(empleado.getImpuestoextra());
+    	//empleadoexistent.setSueldototal(empleado.getSueldototal());
+		//empleadoexistent.setValesdespensa(empleado.getValesdespensa());
+    	
+    	System.out.println("Aqui2 " + rolfk);
+    	System.out.println("Aqui3 " + empleado); 
+    	
     	enRepositorio.save(empleadoexistent);
     	//rolRepositorio.save(rolfk);
-    	System.out.println(empleado.getNombre());
+    	//System.out.println(empleado.getNombre());
     	
         return "redirect:/empleados";
     }

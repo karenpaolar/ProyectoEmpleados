@@ -34,11 +34,12 @@
 				<div class="card-body">
 
 					<form th:action="@{/empleados/crear_empleado}" th:object="${empleado}" method="POST">
-						<div class="form-group">
+						<!--<div class="form-group">
 							<label>Número de empleado:</label>
 							<input type="text" name="id" th:field="*{id}" class="form-control"
-								placeholder="Mostrar Numero">
-						</div>
+								placeholder="Mostrar Numero"> 
+						</div>-->
+						
 						<div class="form-group">
 							<label>Nombre :</label>
 							<input type="text" name="nombre" th:field="*{nombre}" class="form-control"

@@ -26,7 +26,7 @@
 							<input type="text" name="id" th:field="*{id}" class="form-control"
 								placeholder="Digite su numero" required>
 						</div>
-						<br>
+					
 						<div class="form-group">
 							<label>Nombre :</label>
 							<input type="text" name="nombre" th:field="*{nombre}" class="form-control"
@@ -42,7 +42,6 @@
 						<div>
 							<label>Rol :</label>
 							<select th:field="*{rolfk.idrol}" class="form-control" id="dropDownList">
-								<option th:value="1" > 1</option>
 								<option th:each="listaRole : ${listaRole}" 
 									th:value="${listaRole.idrol}" 
 									th:text="${listaRole.nombrerol}"></option>
@@ -53,7 +52,7 @@
 							<label>Mes :</label>
 							<input type="text" name="mes" class="form-control" placeholder="Enero">
 						</div>
-						<br>
+					
 
 						<div class="form-group">
 							<label>Cantidad de entregas :</label>

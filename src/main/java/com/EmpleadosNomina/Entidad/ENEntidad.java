@@ -76,6 +76,7 @@ public class ENEntidad {
 	}
 
 
+
 	public ENEntidad(Long id, String nombre, ENRol rolfk) {
 		this.id = id;
 		this.nombre = nombre;
